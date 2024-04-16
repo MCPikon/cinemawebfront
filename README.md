@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# CinemaWebFront
 
-First, run the development server:
+[![Next.js](https://img.shields.io/badge/Next.js-14.2.1-gray?style=for-the-badge&logo=nextdotjs&labelColor=black)](https://astro.build/) &nbsp;
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.3%2B-dodgerblue?style=for-the-badge&logo=tailwindcss&logoColor=white&labelColor=101010)](https://tailwindcss.com/) &nbsp;
+![React](https://img.shields.io/badge/React-18.2.0%2B-steelblue?style=for-the-badge&logo=react&logoColor=white&labelColor=101010) &nbsp;
+
+## 🙋‍♂️ Autor
+
+* [Javier Picón](https://github.com/MCPikon)
+
+## ✨ Descripción
+
+Sitio web de películas, series y reseñas de las mismas.
+
+> [!NOTE]
+> La web muestra los resultados que devuelve la API **([CinemaWebBack](https://github.com/MCPikon/cinemawebback))** en el Backend.
+
+## 📦 Instalación
+
+Para poder ejecutar el proyecto en local hay que hacer lo siguiente:
+
+1. Clona el repositorio y entra a la carpeta del proyecto:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/MCPikon/cinemawebfront.git
+cd ./cinemawebfront
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Instala las dependencias:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Este proyecto usa pnpm para instalar y administrar las dependencias.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+# Instalar pnpm globalmente si no lo tienes instalado:
+npm install -g pnpm
+# Instala las dependencias:
+pnpm install
+```
 
-## Learn More
+3. Arranca el proyecto:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Abre tu navegador y entra a [http://localhost:3000](http://localhost:3000) para ver la web en ejecución.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 🛠 Tecnologías
 
-## Deploy on Vercel
+* [Next.js](https://nextjs.org/)
+* [Tailwind CSS](https://tailwindcss.com/)
+* [React](https://react.dev/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 Licencia
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Este proyecto es de código abierto y está disponible bajo la [Licencia 2.0 de Apache](LICENSE).
+
+---
+
+Iconos sacados de [heroicons](https://heroicons.com/).
