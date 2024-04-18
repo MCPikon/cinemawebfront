@@ -4,7 +4,7 @@ export default function NotFound() {
     return (
         <div className='h-full flex justify-center items-center p-5 md:p-3'>
           <div className='text-center'>
-          <svg
+            <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1024 768"
             className="transition-all ease-in-out mx-auto h-56 w-auto sm:h-64 text-gray-300 hover:scale-90 hover:text-teal-100"
