@@ -1,11 +1,11 @@
 import { Link } from 'next-view-transitions';
 import NavLinks from './nav-links';
 import Logo from './logo';
-import { rubik } from '../lib/fonts';
+import { redHatDisplay } from '../lib/fonts';
 
 export default function SideNav() {
   return (
-    <div className={`${rubik.className} antialiased flex h-full bg-gray-900 flex-col px-3 py-4 md:px-2`}>
+    <div className={`${redHatDisplay.className} antialiased flex h-full bg-gray-900 flex-col px-3 py-4 md:px-2`}>
       <Link className="mb-2 flex h-20 items-end justify-start rounded-md bg-teal-800 p-4 md:h-40" href="/">
         <div className="w-40 text-white md:w-56">
           <Logo />

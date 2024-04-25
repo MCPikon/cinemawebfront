@@ -30,3 +30,11 @@ export function CardsSkeleton() {
     </div>
   );
 }
+
+export function VideoPlayerSkeleton() {
+  return (
+    <div
+      className={`${shimmer} relative overflow-hidden h-[226px] w-[300px] md:h-[426px] md:w-[600px] rounded-xl bg-gray-700 shadow-sm`}
+    />
+  );
+}

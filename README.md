@@ -51,6 +51,10 @@ pnpm run dev
 * [Next.js](https://nextjs.org/)
 * [Tailwind CSS](https://tailwindcss.com/)
 * [React](https://react.dev/)
+* _Dependencias Externas:_
+  * @heroicons/react
+  * next-view-transitions
+  * react-player
 
 ## 📄 Licencia
 
@@ -58,4 +62,4 @@ Este proyecto es de código abierto y está disponible bajo la [Licencia 2.0 de 
 
 ---
 
-Iconos sacados de [heroicons](https://heroicons.com/).
+Iconos sacados de [heroicons](https://heroicons.com/) e Imagénes de [opendoodles](https://www.opendoodles.com/) y [themoviedb](https://www.themoviedb.org/?language=es).
