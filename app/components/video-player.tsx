@@ -10,7 +10,7 @@ export function VideoPlayer({ videoUrl } : { videoUrl: string }) {
             if (typeof window !== "undefined") setHasWindow(true);
         }, []);
     return (
-        <div className="mx-auto md:mx-0 md:flex md:items-center md:justify-center rounded-lg overflow-hidden h-[226px] w-[300px] md:h-[426px] md:w-[600px] mt-2 shadow-md shadow-slate-900">
+        <div className="mx-auto lg:mx-0 lg:flex lg:items-center lg:justify-center rounded-lg overflow-hidden h-[220px] w-[300px] md:h-[300px] md:w-[420px] lg:h-[320px] lg:w-[440px] xl:h-[426px] xl:w-[600px] mt-2 shadow-md shadow-black">
             {
                 hasWindow && <ReactPlayer
                     width="100%"

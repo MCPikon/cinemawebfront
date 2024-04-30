@@ -10,9 +10,9 @@ export default function Card(
     if ("duration" in item) isMovie = true;
     
     return (
-        <div className="transition-all ease-in-out md:hover:scale-105 w-64 h-full border border-slate-800 bg-slate-800 rounded-lg md:hover:shadow-lg md:hover:shadow-slate-700">
+        <div className="transition-all ease-in-out md:hover:scale-105 w-72 md:w-80 lg:w-72 xl:w-64 h-full border border-slate-800 bg-slate-800 rounded-lg md:hover:shadow-lg md:hover:shadow-slate-700">
             <Link href={isMovie ? `/movies/${item.imdbId}` : `/series/${item.imdbId}`}>
-                <Image className="rounded-t-lg h-auto w-64" src={item.poster} alt={item.title} width={616} height={924} />
+                <Image className="rounded-t-lg h-auto w-72 md:w-80 lg:w-72 xl:w-64" src={item.poster} alt={item.title} width={616} height={924} />
             </Link>
             <div className="p-4">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-white">{item.title}</h5>

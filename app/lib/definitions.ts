@@ -28,13 +28,13 @@ export type Series = {
     poster: string
 }
 
-type Season = {
+export type Season = {
     overview: string,
     episodeList: Episode[],
     poster: string
 }
 
-type Episode = {
+export type Episode = {
     title: string,
     releaseDate: string,
     duration: string,
@@ -54,4 +54,12 @@ export type SeriesDetails = {
     seasonList: Season[],
     poster: string,
     backdrop: string
+}
+
+export type Review = {
+    id: string,
+    title: string,
+    body: string,
+    createdAt: Date,
+    updatedAt: Date
 }
