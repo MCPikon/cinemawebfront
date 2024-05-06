@@ -15,7 +15,7 @@ export default function MovieInfo(
                     Volver a Películas
                 </Link>
                 <div className="lg:flex lg:gap-6">
-                    <Image className="rounded-lg h-auto w-60 mx-auto mb-3 lg:mb-0 lg:w-60 xl:w-80 lg:self-start lg:mx-0" src={movie.poster} alt={movie.title} width={616} height={924} />
+                    <Image className="rounded-lg h-auto w-60 mx-auto mb-3 lg:mb-0 lg:w-60 xl:w-80 lg:self-start lg:mx-0" src={movie.poster} alt={movie.title} priority={true} width={616} height={924} />
                     <div>
                         <h1 className="text-3xl lg:text-4xl font-bold">{movie.title}</h1>
                         <h2 className="text-xl mb-3 lg:mb-0 lg:text-2xl font-semibold">{movie.director}</h2>
