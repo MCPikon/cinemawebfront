@@ -15,6 +15,23 @@ export async function fetchAllMovies() {
     }
 }
 
+export async function fetchAllMoviesByTitle(title: string) {
+    try {
+        const moviesList: Movie[] = await fetch(`${API_URL}movies/findAllByTitle/${title}`, {
+            next: {
+                revalidate: 60
+            }
+        }).then(res => {
+            if(res.status == 204) return []
+            else return res.json()
+        })
+        return moviesList;
+    } catch(error) {
+        console.log(`Error fetching all movies with title ${title}:`, error);
+        throw new Error(`Error al obtener la lista de películas con título: ${title}.`)
+    }
+}
+
 export async function fetchMovieByImdbId(imdbId: string) {
     try {
         const movie: MovieDetails = await fetch(`${API_URL}movies/findByImdbId/${imdbId}`, {
@@ -43,6 +60,23 @@ export async function fetchAllSeries() {
     } catch(error) {
         console.log("Error fetching all series:", error);
         throw new Error("Error al obtener la lista de series.")
+    }
+}
+
+export async function fetchAllSeriesByTitle(title: string) {
+    try {
+        const seriesList: Series[] = await fetch(`${API_URL}series/findAllByTitle/${title}`, {
+            next: {
+                revalidate: 60
+            }
+        }).then(res => {
+            if(res.status == 204) return []
+            else return res.json()
+        })
+        return seriesList;
+    } catch(error) {
+        console.log(`Error fetching all series with title ${title}:`, error);
+        throw new Error(`Error al obtener la lista de series con título: ${title}.`)
     }
 }
 

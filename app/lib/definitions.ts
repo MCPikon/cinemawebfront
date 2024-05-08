@@ -59,6 +59,7 @@ export type SeriesDetails = {
 export type Review = {
     id: string,
     title: string,
+    rating: number,
     body: string,
     createdAt: Date,
     updatedAt: Date

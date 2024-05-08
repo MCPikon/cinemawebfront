@@ -1,10 +1,20 @@
 import Card from "./card"
 import { Series } from "../lib/definitions"
-import { fetchAllSeries } from "../lib/data";
+import { fetchAllSeries, fetchAllSeriesByTitle } from "../lib/data";
 import { Link } from "next-view-transitions";
 
-export default async function SeriesList() {
-    const seriesList = await fetchAllSeries()
+export default async function SeriesList(
+    { query } : { query: string }
+) {
+    let seriesList: Series[] = [];
+    let notFound: boolean = false;
+
+    if (query === '') {
+        seriesList = await fetchAllSeries();
+    } else {
+        seriesList = await fetchAllSeriesByTitle(query);
+        notFound = true;
+    }
 
     if (seriesList.length === 0) {
         return (
@@ -22,7 +32,7 @@ export default async function SeriesList() {
                             </g>
                         </g>
                     </svg>
-                    <h2 className='text-3xl md:text-4xl font-bold tracking-tight mt-4 mb-4'>No hay series disponibles actualmente en el catálogo.</h2>
+                    <h2 className='text-3xl md:text-4xl font-bold tracking-tight mt-4 mb-4'>{notFound ? `No se ha encontrado la serie con nombre '${query}'.` : "No hay series disponibles actualmente en el catálogo."}</h2>
                     <h3 className="text-base opacity-90 font-semibold text-teal-300 mb-6">Lo sentimos!</h3>
                     <Link className='inline-block transition-colors ease-in-out px-3 py-2 font-semibold text-md text-white rounded-lg focus:ring-4 focus:outline-none bg-teal-600 hover:bg-teal-700 focus:ring-teal-800' href="/">
                         Volver a Inicio
