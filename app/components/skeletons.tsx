@@ -38,3 +38,39 @@ export function VideoPlayerSkeleton() {
     />
   );
 }
+
+export function ReviewCardSkeleton() {
+  return (
+    <div className={`${shimmer} relative overflow-hidden flex flex-col mb-5 bg-gray-700 shadow-sm rounded-xl max-w-md p-3`}>
+      <div className="bg-slate-500 rounded-full size-9 my-2 mx-1"/>
+      <div className="ms-1">
+        <div className="bg-slate-500 w-60 h-6 rounded-xl"/>
+        <div className="flex mt-2 mb-2 gap-1">
+          <div className="bg-slate-500 size-5 rounded-full"/>
+          <div className="bg-slate-500 size-5 rounded-full"/>
+          <div className="bg-slate-500 size-5 rounded-full"/>
+          <div className="bg-slate-500 size-5 rounded-full"/>
+          <div className="bg-slate-500 size-5 rounded-full"/>
+        </div>
+        <div className="mt-3 bg-slate-500 w-72 md:w-96 lg:w-72 xl:w-80 2xl:w-96 h-4 rounded-xl"/>
+        <div className="mt-1 bg-slate-500 w-60 md:w-72 lg:w-60 xl:w-72 h-4 rounded-xl"/>
+        <div className="mt-4 flex flex-wrap">
+          <div className=" bg-slate-500 w-24 h-3 rounded-xl me-2"/> 
+          <div className="bg-slate-500 w-24 h-3 rounded-xl"/>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function ReviewCardsSkeleton() {
+  return (
+    <div className="m-9">
+      <div className={`${shimmer} relative overflow-hidden mb-3 h-8 w-48 bg-slate-700 rounded-xl`}/>
+      <div className="block lg:grid gap-2 lg:grid-cols-2 xl:grid-cols-3">
+        <ReviewCardSkeleton />
+        <ReviewCardSkeleton />
+      </div>
+    </div>
+  );
+}

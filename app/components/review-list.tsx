@@ -22,7 +22,7 @@ export default async function ReviewList(
     return (
         <div className="m-9">
             <h1 className="text-xl md:text-2xl font-bold tracking-tight mb-3">Reviews de la {type}:</h1>
-            <div className="block lg:grid gap-2 lg:grid-cols-3">
+            <div className="block lg:grid gap-2 lg:grid-cols-2 xl:grid-cols-3">
                 {reviewList.map((review: Review) => {
                     if(reviewList.indexOf(review) % 2 == 0)
                         return <div key={review.id} className="flex flex-col mb-5 bg-slate-700/70 shadow-sm rounded-xl max-w-md p-3">

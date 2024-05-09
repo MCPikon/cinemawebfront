@@ -28,7 +28,7 @@ export default function SearchBar({ placeholder }: { placeholder: string }) {
             <input
                 id='searchBar'
                 type='text'
-                className="peer block bg-slate-700 w-full rounded-md border-2 border-slate-500 py-[9px] pl-10 text-base outline-2 placeholder:text-gray-400 focus:border-teal-500 focus:outline-none"
+                className="peer block bg-slate-700 w-full rounded-md border-2 border-slate-500 py-[9px] pl-10 text-base outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none"
                 placeholder={placeholder}
                 onChange={(e) => { handleSearch(e.target.value); }}
                 defaultValue={searchParams.get('query')?.toString()}

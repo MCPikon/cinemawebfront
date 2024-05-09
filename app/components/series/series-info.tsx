@@ -1,8 +1,8 @@
 import { ArrowLeftIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
-import { VideoPlayer } from "./video-player";
-import { Episode, Season, SeriesDetails } from "../lib/definitions";
+import { VideoPlayer } from "../video-player";
+import { Episode, Season, SeriesDetails } from "../../lib/definitions";
 
 export default function SeriesInfo(
     { series } : { series : SeriesDetails }

@@ -1,6 +1,8 @@
-import MovieInfo from "@/app/components/movie-info";
+import MovieInfo from "@/app/components/movies/movie-info";
 import ReviewList from "@/app/components/review-list";
+import { ReviewCardsSkeleton } from "@/app/components/skeletons";
 import { fetchMovieByImdbId } from "@/app/lib/data";
+import { Suspense } from "react";
 
 export default async function MovieDetailsPage(
     { params }: { params: { imdbId: string } }
@@ -9,7 +11,9 @@ export default async function MovieDetailsPage(
     return (
         <section>
             <MovieInfo movie={movie}/>
-            <ReviewList imdbId={params.imdbId} isMovie/>
+            <Suspense fallback={<ReviewCardsSkeleton/>}>
+                <ReviewList imdbId={params.imdbId} isMovie/>
+            </Suspense>
         </section>
     );
 }

@@ -1,8 +1,8 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import { Link } from "next-view-transitions";
 import Image from "next/image";
-import { VideoPlayer } from "./video-player";
-import { MovieDetails } from "../lib/definitions";
+import { VideoPlayer } from "../video-player";
+import { MovieDetails } from "../../lib/definitions";
 
 export default function MovieInfo(
     { movie } : { movie : MovieDetails }

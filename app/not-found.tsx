@@ -7,7 +7,7 @@ export default function NotFound() {
             <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 1024 768"
-            className="transition-all ease-in-out mx-auto h-56 w-auto sm:h-64 text-gray-300 hover:scale-90 hover:text-teal-100"
+            className="transition-all ease-in-out mx-auto h-56 w-auto sm:h-64 text-gray-300 lg:hover:scale-90 lg:hover:text-teal-100"
             >
             <g fill="none" fillRule="evenodd">
                 <g fill="#FF5678">
@@ -38,7 +38,7 @@ export default function NotFound() {
             <h3 className='text-3xl md:text-4xl font-bold tracking-tight mt-4 mb-4'>Uh-oh!</h3>
             <h3 className='text-md md:text-lg text-slate-300 mt-4 mb-4'>La página a la que estas intentando acceder no existe!</h3>
             <Link
-              className='inline-block transition-colors ease-in-out px-3 py-2 font-semibold text-md text-white rounded-lg focus:ring-4 focus:outline-none bg-teal-600 hover:bg-teal-700 focus:ring-teal-800'
+              className='inline-block transition-colors ease-in-out px-3 py-2 font-semibold text-md text-white rounded-lg focus:ring-4 focus:outline-none bg-teal-700 hover:bg-teal-800 focus:ring-teal-900'
               href="/"
             >
               Volver a Inicio

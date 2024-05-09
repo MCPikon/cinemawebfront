@@ -1,26 +1,19 @@
-import Card from "./card"
-import { Movie } from "../lib/definitions"
-import { fetchAllMovies, fetchAllMoviesByTitle } from "../lib/data";
+import Card from "../card"
+import { Movie } from "../../lib/definitions"
+import { fetchAllMovies, fetchAllMoviesByTitle } from "../../lib/data";
 import { Link } from "next-view-transitions";
 
 export default async function MoviesList(
     { query } : { query: string }
 ) {
-    let moviesList: Movie[] = []
-    let notFound: boolean = false;
-
-    if (query === '') {
-        moviesList = await fetchAllMovies();
-    } else {
-        moviesList = await fetchAllMoviesByTitle(query);
-        notFound = true;
-    }
+    const moviesList: Movie[] = query === '' ? await fetchAllMovies() : await fetchAllMoviesByTitle(query);
+    let notFound = query !== '';
 
     if (moviesList.length === 0) {
         return (
             <div className='h-full flex justify-center items-center p-5 md:p-3'>
-                <div className='text-center md:w-1/3'>
-                    <svg className="transition-all ease-in-out mx-auto h-56 w-auto sm:h-64 text-gray-300 hover:scale-90 hover:text-teal-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768" version="1.1">
+                <div className='text-center xl:w-1/3'>
+                    <svg className="transition-all ease-in-out mx-auto h-56 w-auto sm:h-64 text-gray-300 lg:hover:scale-90 lg:hover:text-teal-100" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 768" version="1.1">
                         <g id="Character/sitting" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                             <path d="M281.5303,633.8185 C281.6493,593.1935 282.4303,552.5545 283.8013,511.9525 C284.8193,481.8605 286.1233,451.7465 288.6463,421.7385 C289.6453,409.8505 290.8073,397.9525 292.6363,386.1595 C293.7693,378.8575 294.8103,370.9025 297.8913,364.1035 C298.9003,361.8785 299.8743,360.4315 302.0203,359.2935 C309.9563,355.0815 320.8293,354.4625 329.5783,353.5735 C343.9223,352.1165 358.4413,351.6965 372.8553,351.9935 C372.0103,367.4975 371.1663,383.0015 370.3223,398.5045 C369.6723,410.4455 369.0213,422.3865 368.3713,434.3265 C367.9613,441.8635 366.9713,449.6145 367.1273,457.1635 C367.2543,463.3135 374.4863,469.1985 378.1623,474.0005 C382.6713,460.2075 387.1803,446.4145 391.6903,432.6215 C394.0743,438.7775 396.6223,444.8805 399.3943,450.8705 C401.2233,454.8215 403.0853,458.8885 405.5103,462.5205 C407.7263,465.8385 408.3753,466.3065 412.2263,465.7405 C416.8623,465.0595 420.3823,463.6845 423.1223,467.1305 C425.5513,470.1855 427.8133,473.3015 430.4493,476.2015 C459.5563,508.2145 504.4103,528.0955 545.9713,537.0895 C570.4503,542.3855 595.1443,546.6865 619.6133,552.0875 C656.9733,560.3335 695.3473,568.4645 731.0303,582.5595 C736.6223,584.7685 742.2753,587.1415 747.3773,590.3555 C753.0033,593.8985 757.0213,599.2595 760.9143,604.5675 C770.4263,617.5375 781.5773,638.8105 766.9063,652.3475 C755.6593,662.7255 738.0863,663.7675 723.4753,664.9355 C708.3723,666.1435 693.2163,666.7325 678.0753,667.2245 C636.8353,668.5645 595.5563,668.8545 554.2973,668.893565 C516.6003,668.9225 478.8973,668.7095 441.2073,667.9885 C424.1083,667.6615 407.6313,668.0585 391.0863,663.6705 C357.2243,654.6915 323.4593,645.3435 289.6803,636.0595 C286.9643,635.3135 284.2473,634.5665 281.5303,633.8185" id="Accent" fill="#FF5678"/>
                             <g id="Ink" transform="translate(135.999936, 31.999524)" fill="currentColor">
@@ -32,10 +25,10 @@ export default async function MoviesList(
                             </g>
                         </g>
                     </svg>
-                    <h2 className='text-3xl md:text-4xl font-bold tracking-tight mt-4 mb-4'>{notFound ? `No se ha encontrado la película con nombre '${query}'.` : "No hay películas disponibles actualmente en el catálogo."}</h2>
+                    <h2 className='text-3xl md:text-4xl font-bold tracking-tight mt-4 mb-4'>{notFound ? `No se ha encontrado la película con nombre "${query}".` : "No hay películas disponibles actualmente en el catálogo."}</h2>
                     <h3 className="text-base opacity-90 font-semibold text-teal-300 mb-6">Lo sentimos!</h3>
-                    <Link className='inline-block transition-colors ease-in-out px-3 py-2 font-semibold text-md text-white rounded-lg focus:ring-4 focus:outline-none bg-teal-600 hover:bg-teal-700 focus:ring-teal-800' href="/">
-                        Volver a Inicio
+                    <Link className='inline-block transition-colors ease-in-out px-3 py-2 font-semibold text-md text-white rounded-lg focus:ring-4 focus:outline-none bg-teal-600 hover:bg-teal-700 focus:ring-teal-800' href={notFound ? "/movies" : "/"}>
+                        {notFound ? "Mostrar lista" : "Volver a inicio"}
                     </Link>
                 </div>
             </div>

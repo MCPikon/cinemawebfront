@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import SideNav from "./components/sidenav";
+import SideNav from "./components/sidenav/sidenav";
 import { spaceGrotesk } from "./lib/fonts";
 import { Link, ViewTransitions } from 'next-view-transitions'
 

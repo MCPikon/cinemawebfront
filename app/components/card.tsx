@@ -6,11 +6,10 @@ import { Link } from "next-view-transitions";
 export default function Card(
     { item } : { item: Movie | Series }
 ) {
-    let isMovie = false;
-    if ("duration" in item) isMovie = true;
+    let isMovie = "duration" in item
     
     return (
-        <div className="transition-all ease-in-out md:hover:scale-105 w-72 md:w-80 lg:w-72 xl:w-64 h-full border border-slate-800 bg-slate-800 rounded-lg md:hover:shadow-lg md:hover:shadow-slate-700">
+        <div className="transition-all ease-in-out lg:hover:scale-105 w-72 md:w-80 lg:w-72 xl:w-64 h-full border border-slate-800 bg-slate-800 rounded-lg lg:hover:shadow-lg lg:hover:shadow-slate-700">
             <Link href={isMovie ? `/movies/${item.imdbId}` : `/series/${item.imdbId}`}>
                 <Image className="rounded-t-lg h-auto w-72 md:w-80 lg:w-72 xl:w-64" src={item.poster} quality={60} alt={item.title} width={616} height={924} />
             </Link>
@@ -22,7 +21,7 @@ export default function Card(
                      item.numberOfSeasons == 1 ? `${item?.numberOfSeasons} Temporada` :
                      `${item.numberOfSeasons} Temporadas`}
                 </p>
-                <Link href={isMovie ? `/movies/${item.imdbId}` : `/series/${item.imdbId}`} className="transition-colors ease-in-out inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-teal-600 hover:bg-teal-700 focus:ring-teal-800">
+                <Link href={isMovie ? `/movies/${item.imdbId}` : `/series/${item.imdbId}`} className="transition-colors ease-in-out inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-teal-700 hover:bg-teal-800 focus:ring-teal-900">
                     Más Info.
                     <InformationCircleIcon className="ms-1 h-5"/>
                 </Link>

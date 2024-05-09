@@ -1,5 +1,5 @@
 import ReviewList from "@/app/components/review-list";
-import SeriesInfo from "@/app/components/series-info";
+import SeriesInfo from "@/app/components/series/series-info";
 import { fetchSeriesByImdbId } from "@/app/lib/data";
 
 export default async function SeriesDetailsPage(
