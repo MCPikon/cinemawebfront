@@ -11,7 +11,7 @@ export default function NewMoviePage() {
             </Link>
             <h1 className="text-4xl font-bold tracking-tight">Añadir nueva película</h1>
             <h2 className="text-lg font-light text-slate-300">¿No encuentras la película que estás buscando? ¡Añádela tu mismo!.</h2>
-            <div className="mt-3 xl:w-3/4">
+            <div className="mt-3 2xl:w-3/4">
                 <CreateMovieForm />
             </div>
         </section>

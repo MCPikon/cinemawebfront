@@ -9,7 +9,7 @@ export default function CreateMovieForm() {
     const [genres, setGenres] = useState(["Crimen"]);
 
     return (
-        <form action={createMovie} onSubmit={() => (document.getElementById("genres") as HTMLInputElement).value = JSON.stringify(genres)}>
+        <form action={createMovie}>
             <div className="xl:grid xl:grid-cols-2">
                 {/* Title */}
                 <div className="mb-4 max-w-lg">
@@ -23,7 +23,9 @@ export default function CreateMovieForm() {
                                 name="title"
                                 type="text"
                                 placeholder="Ej: El lobo de Wall Street"
-                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none"
+                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                required
+                                pattern=".{2,}"
                             />
                             <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>
@@ -41,7 +43,9 @@ export default function CreateMovieForm() {
                                 name="imdbId"
                                 type="text"
                                 placeholder="Ej: tt0993846"
-                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none"
+                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                required
+                                pattern="^tt\d+$"
                             />
                             <IdentificationIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>
@@ -58,7 +62,8 @@ export default function CreateMovieForm() {
                                 id="overview"
                                 name="overview"
                                 placeholder="Ej: Película basada en hechos reales del corredor de bolsa neoyorquino Jordan Belfort..."
-                                className="peer resize-y block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 placeholder:max-w-sm lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none">
+                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                required>
                             </textarea>
                             <DocumentTextIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>
@@ -76,7 +81,9 @@ export default function CreateMovieForm() {
                                 name="duration"
                                 type="text"
                                 placeholder="Ej: 2h 59m"
-                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none"
+                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                required
+                                pattern="^(\d{1,2})h\s(\d{1,2})m$"
                             />
                             <ClockIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>
@@ -94,7 +101,9 @@ export default function CreateMovieForm() {
                                 name="director"
                                 type="text"
                                 placeholder="Ej: Martin Scorsese"
-                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none"
+                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                required
+                                pattern="^(?=\S+\s+\S+)\S+(\s+\S+)*$"
                             />
                             <UserIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>
@@ -112,7 +121,9 @@ export default function CreateMovieForm() {
                                 name="releaseDate"
                                 type="text"
                                 placeholder="Ej: 2002-04-12"
-                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none"
+                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                required
+                                pattern="^(\d{4})-(\d{2})-(\d{2})$"
                             />
                             <CalendarDaysIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>
@@ -130,7 +141,9 @@ export default function CreateMovieForm() {
                                 name="trailerLink"
                                 type="text"
                                 placeholder="Ej: https://youtu.be/DO_96Ee_qWw"
-                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none"
+                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                required
+                                pattern="^(https?://)?(www\.)?((youtube\.com/watch\?v=)|(youtu\.be/))\w+$"
                             />
                             <LinkIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>
@@ -147,7 +160,7 @@ export default function CreateMovieForm() {
                             onChange={setGenres}
                             placeHolder="Introduce un género..."
                         />
-                        <input className="hidden" type="text" id="genres" name="genres" value=""/>
+                        <input type="hidden" id="genres" name="genres" defaultValue="" value={JSON.stringify(genres)}/>
                     </div>
                 </div>
                 {/* Poster */}
@@ -162,7 +175,9 @@ export default function CreateMovieForm() {
                                 name="poster"
                                 type="text"
                                 placeholder="Ej: https://image.tmdb.org/t/p/original/jTlIYjvS16XOpsfvYCTmtEHV10K.jpg"
-                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none"
+                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                required
+                                pattern="^(https?://)([^/\s]+\.[^/\s]+)/(.+\.(jpg|jpeg|png|gif|bmp|webp))(\?[^/\s]+)?$"
                             />
                             <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>
@@ -180,7 +195,9 @@ export default function CreateMovieForm() {
                                 name="backdrop"
                                 type="text"
                                 placeholder="Ej: https://image.tmdb.org/t/p/original/7Nwnmyzrtd0FkcRyPqmdzTPppQa.jpg"
-                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none"
+                                className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
+                                required
+                                pattern="^(https?://)([^/\s]+\.[^/\s]+)/(.+\.(jpg|jpeg|png|gif|bmp|webp))(\?[^/\s]+)?$"
                             />
                             <PhotoIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>

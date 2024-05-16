@@ -1,3 +1,4 @@
+import { MoviePostSchema } from "./actions";
 import { Movie, MovieDetails, Review, Series, SeriesDetails } from "./definitions";
 import { API_URL } from "./utils";
 
@@ -46,6 +47,22 @@ export async function fetchMovieByImdbId(imdbId: string) {
     } catch(error) {
         console.log(`Error fetching movie with imdbId ${imdbId}:`, error);
         throw new Error(`Error al obtener la película con imdbId: ${imdbId}.`)
+    }
+}
+
+export async function postNewMovie(movieToPost: MoviePostSchema) {
+    try {
+        const movie: Movie = await fetch(`${API_URL}movies/save`, {
+            method: "POST",
+            body: JSON.stringify(movieToPost),
+              headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(res => res.json())
+        return movie;
+    } catch(error) {
+        console.log(`Error posting movie with title ${movieToPost.title}:`, error);
+        throw new Error(`Error al añadir la película con título: ${movieToPost.title}.`)
     }
 }
 
