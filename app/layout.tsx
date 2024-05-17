@@ -3,6 +3,7 @@ import "./globals.css";
 import SideNav from "./components/sidenav/sidenav";
 import { spaceGrotesk } from "./lib/fonts";
 import { Link, ViewTransitions } from 'next-view-transitions'
+import { Toaster } from "react-hot-toast";
 
 const year = new Date().getFullYear();
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="es">
         <body className={`${spaceGrotesk.className} antialiased flex h-screen flex-col md:flex-row md:overflow-hidden`}>
+          <div><Toaster position="bottom-right"/></div>
           <header className="w-full flex-none md:w-64">
             <SideNav />
           </header>

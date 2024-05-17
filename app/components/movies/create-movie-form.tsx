@@ -3,13 +3,38 @@
 import { createMovie } from "@/app/lib/actions";
 import { AtSymbolIcon, CalendarDaysIcon, ClockIcon, DocumentTextIcon, IdentificationIcon, LinkIcon, PhotoIcon, UserIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { TagsInput } from "react-tag-input-component";
 
 export default function CreateMovieForm() {
     const [genres, setGenres] = useState(["Crimen"]);
 
+    const notifyClearedForm = () => {
+        toast("Campos vaciados.", 
+            {icon: '🧹',
+             style: {
+                background: "#334155",
+                color: '#fff',
+            }});
+    }
+
     return (
-        <form action={createMovie}>
+        <form action={async (formData: FormData) => {
+            const result = await createMovie(formData);
+            if(result?.error) {
+                toast.error("A ocurrido un error al enviar el formulario. Comprueba que los campos son correctos.", 
+                {style: {
+                    background: "#334155",
+                    color: '#fff',
+                }});
+            } else {
+                toast.success("Película creada con éxito", 
+                {style: {
+                    background: "#334155",
+                    color: '#fff',
+                }});
+            }
+        }}>
             <div className="xl:grid xl:grid-cols-2">
                 {/* Title */}
                 <div className="mb-4 max-w-lg">
@@ -18,6 +43,7 @@ export default function CreateMovieForm() {
                     </label>
                     <div className="relative mt-2 rounded-md">
                         <div className="relative">
+                            <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                             <input
                                 id="title"
                                 name="title"
@@ -27,7 +53,6 @@ export default function CreateMovieForm() {
                                 required
                                 pattern=".{2,}"
                             />
-                            <AtSymbolIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>
                     </div>
                 </div>
@@ -143,7 +168,7 @@ export default function CreateMovieForm() {
                                 placeholder="Ej: https://youtu.be/DO_96Ee_qWw"
                                 className="peer block w-full rounded-md bg-slate-700 border-2 border-slate-500 py-2 pl-10 text-sm outline-2 transition-colors placeholder:text-gray-400 lg:hover:border-teal-400 focus:border-teal-500 focus:outline-none invalid:[&:not(:placeholder-shown):not(:focus)]:border-red-500"
                                 required
-                                pattern="^(https?://)?(www\.)?((youtube\.com/watch\?v=)|(youtu\.be/))\w+$"
+                                pattern="^(https?:\/\/)?(www\.)?((youtube\.com\/watch\?v=)|(youtu\.be\/))[a-zA-Z0-9_-]+$"
                             />
                             <LinkIcon className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 text-slate-400 peer-focus:text-teal-500" />
                         </div>
@@ -160,7 +185,7 @@ export default function CreateMovieForm() {
                             onChange={setGenres}
                             placeHolder="Introduce un género..."
                         />
-                        <input type="hidden" id="genres" name="genres" defaultValue="" value={JSON.stringify(genres)}/>
+                        <input type="hidden" id="genres" name="genres" value={JSON.stringify(genres)}/>
                     </div>
                 </div>
                 {/* Poster */}
@@ -205,7 +230,7 @@ export default function CreateMovieForm() {
                 </div>
             </div>
             <div className="mt-4 inline-flex gap-4">
-                <button className="transition-colors ease-in-out inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-red-700 hover:bg-red-800 focus:ring-red-900" type="reset">Borrar campos</button>
+                <button className="transition-colors ease-in-out inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-red-700 hover:bg-red-800 focus:ring-red-900" type="reset" onClick={notifyClearedForm}>Borrar campos</button>
                 <button className="transition-colors ease-in-out inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg focus:ring-4 focus:outline-none bg-teal-700 hover:bg-teal-800 focus:ring-teal-900" type="submit">Crear película</button>
             </div>
         </form>

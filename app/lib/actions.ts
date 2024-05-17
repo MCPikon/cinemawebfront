@@ -21,21 +21,27 @@ const MovieSchema = z.object({
 export type MoviePostSchema = z.infer<typeof MovieSchema>
 
 export async function createMovie(formData: FormData) {
-    const movieToAdd: MoviePostSchema = MovieSchema.parse({
-        imdbId: formData.get("imdbId"),
-        title: formData.get("title"),
-        overview: formData.get("overview"),
-        duration: formData.get("duration"),
-        director: formData.get("director"),
-        releaseDate: formData.get("releaseDate"),
-        trailerLink: formData.get("trailerLink"),
-        genres: JSON.parse((formData.get("genres") as string)),
-        poster: formData.get("poster"),
-        backdrop: formData.get("backdrop")
-    });
 
-    await postNewMovie(movieToAdd);
+    try {
+        const movieToAdd: MoviePostSchema = MovieSchema.parse({
+            imdbId: formData.get("imdbId"),
+            title: formData.get("title"),
+            overview: formData.get("overview"),
+            duration: formData.get("duration"),
+            director: formData.get("director"),
+            releaseDate: formData.get("releaseDate"),
+            trailerLink: formData.get("trailerLink"),
+            genres: JSON.parse((formData.get("genres") as string)),
+            poster: formData.get("poster"),
+            backdrop: formData.get("backdrop")
+        });
 
-    revalidatePath('/movies');
-    redirect('/movies');
+        await postNewMovie(movieToAdd);
+
+        revalidatePath('/movies');
+        redirect('/movies');
+
+    } catch(err) {
+        return {error: "A ocurrido un error"}
+    }
 }
