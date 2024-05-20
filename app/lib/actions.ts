@@ -8,8 +8,8 @@ import { redirect } from 'next/navigation';
 const MovieSchema = z.object({
     imdbId: z.string().min(1, "El imdbId no puede estar vacío"),
     title: z.string().min(1, "El título no puede estar vacío"),
-    overview: z.string().min(1, "La sinopsis no puede estar vacío"),
-    duration: z.string().min(1, "La duración no puede estar vacío"),
+    overview: z.string().min(1, "La sinopsis no puede estar vacía"),
+    duration: z.string().min(1, "La duración no puede estar vacía"),
     director: z.string().min(1, "El director no puede estar vacío"),
     releaseDate: z.string().min(1, "La fecha de salida no puede estar vacío"),
     trailerLink: z.string().min(1, "La url del trailer no puede estar vacía"),
@@ -20,8 +20,7 @@ const MovieSchema = z.object({
 
 export type MoviePostSchema = z.infer<typeof MovieSchema>
 
-export async function createMovie(formData: FormData) {
-
+const validateAndPostData = async (formData: FormData) => {
     try {
         const movieToAdd: MoviePostSchema = MovieSchema.parse({
             imdbId: formData.get("imdbId"),
@@ -35,13 +34,14 @@ export async function createMovie(formData: FormData) {
             poster: formData.get("poster"),
             backdrop: formData.get("backdrop")
         });
-
         await postNewMovie(movieToAdd);
-
-        revalidatePath('/movies');
-        redirect('/movies');
-
-    } catch(err) {
-        return {error: "A ocurrido un error"}
+    } catch (err) {
+        throw new Error("A ocurrido un error creando la película.");
     }
+}
+
+export async function createMovie(formData: FormData) {
+    await validateAndPostData(formData);
+    revalidatePath('/movies');
+    redirect('/movies');
 }
