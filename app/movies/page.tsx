@@ -6,9 +6,13 @@ import { Link } from "next-view-transitions";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
 export default async function MoviesPage(
-    { searchParams }: { searchParams?: { query?: string } }
+    { searchParams }: { searchParams?: { 
+        query?: string; 
+        page?: string; 
+    } }
 ) {
     const query = searchParams?.query || '';
+    const currentPage = Number(searchParams?.page) || 1;
     
     return (
         <section className="px-6 pt-6 pb-6 md:px-12 md:pt-10 lg:pb-0.5">
@@ -22,7 +26,7 @@ export default async function MoviesPage(
                 </Link>
             </div>
             <Suspense fallback={<CardsSkeleton/>}>
-                <MoviesList query={query}/>
+                <MoviesList query={query} page={currentPage}/>
             </Suspense>
         </section>
     );

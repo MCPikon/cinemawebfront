@@ -2,34 +2,40 @@ import { MoviePostSchema } from "./actions";
 import { Movie, MovieDetails, Review, Series, SeriesDetails } from "./definitions";
 import { API_URL } from "./utils";
 
-export async function fetchAllMovies() {
+export async function checkAPIHealth() {
     try {
-        const moviesList: Movie[] = await fetch(`${API_URL}movies/findAll`, {
-            next: {
-                revalidate: 60
-            }
-        }).then(res => res.json())
+        return await fetch(`${API_URL}health`)
+        .then(res => {
+            if (res.status == 207) return true;
+            else return false;
+        })
+    } catch(error) {
+        console.log(`Error connecting to API (Status DOWN)`, error);
+        return false;
+    }
+}
+
+export async function fetchAllMovies(title?: string, page?: number) {
+    try {
+        const isTitleValid = (title !== undefined && title !== '')
+        let endpoint = `${API_URL}movies/findAll`;
+        if (isTitleValid) endpoint = endpoint.concat(`?title=${title}`);
+
+        if (page !== undefined)
+            endpoint = isTitleValid ? endpoint.concat(`&page=${page - 1}`) : endpoint.concat(`?page=${page - 1}`);
+        
+        const moviesList = await fetch(endpoint, {
+                next: {
+                    revalidate: 60
+                }
+            }).then(res => {
+                if(res.status == 204) return null
+                else return res.json()
+            })
         return moviesList;
     } catch(error) {
         console.log("Error fetching all movies:", error);
         throw new Error("Error al obtener la lista de películas.")
-    }
-}
-
-export async function fetchAllMoviesByTitle(title: string) {
-    try {
-        const moviesList: Movie[] = await fetch(`${API_URL}movies/findAllByTitle/${title}`, {
-            next: {
-                revalidate: 60
-            }
-        }).then(res => {
-            if(res.status == 204) return []
-            else return res.json()
-        })
-        return moviesList;
-    } catch(error) {
-        console.log(`Error fetching all movies with title ${title}:`, error);
-        throw new Error(`Error al obtener la lista de películas con título: ${title}.`)
     }
 }
 
@@ -66,34 +72,27 @@ export async function postNewMovie(movieToPost: MoviePostSchema) {
     }
 }
 
-export async function fetchAllSeries() {
+export async function fetchAllSeries(title?: string, page?: number) {
     try {
-        const seriesList: Series[] = await fetch(`${API_URL}series/findAll`, {
-            next: {
-                revalidate: 60
-            }
-        }).then(res => res.json())
-        return seriesList;
-    } catch(error) {
-        console.log("Error fetching all series:", error);
-        throw new Error("Error al obtener la lista de series.")
-    }
-}
+        const isTitleValid = (title !== undefined && title !== '')
+        let endpoint = `${API_URL}series/findAll`;
+        if (isTitleValid) endpoint = endpoint.concat(`?title=${title}`);
 
-export async function fetchAllSeriesByTitle(title: string) {
-    try {
-        const seriesList: Series[] = await fetch(`${API_URL}series/findAllByTitle/${title}`, {
+        if (page !== undefined)
+            endpoint = isTitleValid ? endpoint.concat(`&page=${page - 1}`) : endpoint.concat(`?page=${page - 1}`);
+
+        const seriesList = await fetch(endpoint, {
             next: {
                 revalidate: 60
             }
         }).then(res => {
-            if(res.status == 204) return []
+            if (res.status == 204) return null
             else return res.json()
-        })
+        });
         return seriesList;
     } catch(error) {
-        console.log(`Error fetching all series with title ${title}:`, error);
-        throw new Error(`Error al obtener la lista de series con título: ${title}.`)
+        console.log("Error fetching all series:", error);
+        throw new Error("Error al obtener la lista de series.")
     }
 }
 

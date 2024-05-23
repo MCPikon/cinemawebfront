@@ -1,12 +1,15 @@
 import Card from "../card"
 import { Series } from "../../lib/definitions"
-import { fetchAllSeries, fetchAllSeriesByTitle } from "../../lib/data";
+import { fetchAllSeries } from "../../lib/data";
 import { Link } from "next-view-transitions";
+import Pagination from "../pagination";
 
 export default async function SeriesList(
-    { query } : { query: string }
+    { query, page } : { query: string; page: number; }
 ) {
-    const seriesList: Series[] = query === '' ? await fetchAllSeries() : await fetchAllSeriesByTitle(query);
+    const seriesRes = await fetchAllSeries(query, page);
+    const seriesList: Series[] = seriesRes != null ? seriesRes["series"] : [];
+    const totalPages: number = seriesRes != null ? Number(seriesRes["totalPages"]) : 0;
     let notFound = query !== ''
 
     if (seriesList.length === 0) {
@@ -36,10 +39,15 @@ export default async function SeriesList(
     }
 
     return (
-        <div className="flex flex-col container justify-center items-center mt-6 lg:grid gap-6 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5">
-            {seriesList.map((series: Series) => (
-                <Card key={series.imdbId} item={series} />
-            ))}
-        </div>
+        <>
+            <div className="flex flex-col container justify-center items-center mt-6 lg:grid gap-6 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5">
+                {seriesList.map((series: Series) => (
+                    <Card key={series.imdbId} item={series} />
+                ))}
+            </div>
+            <div className="mt-9 flex w-full justify-center">
+                <Pagination totalPages={totalPages} />
+            </div>
+        </>
     );
 }

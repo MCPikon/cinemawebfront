@@ -1,12 +1,15 @@
 import Card from "../card"
 import { Movie } from "../../lib/definitions"
-import { fetchAllMovies, fetchAllMoviesByTitle } from "../../lib/data";
+import { fetchAllMovies } from "../../lib/data";
 import { Link } from "next-view-transitions";
+import Pagination from "../pagination";
 
 export default async function MoviesList(
-    { query } : { query: string }
+    { query, page } : { query: string; page: number; }
 ) {
-    const moviesList: Movie[] = query === '' ? await fetchAllMovies() : await fetchAllMoviesByTitle(query);
+    const moviesRes = await fetchAllMovies(query, page);
+    const moviesList: Movie[] = moviesRes != null ? moviesRes["movies"] : [];
+    const totalPages: number = moviesRes != null ? Number(moviesRes["totalPages"]) : 0;
     let notFound = query !== '';
 
     if (moviesList.length === 0) {
@@ -36,10 +39,15 @@ export default async function MoviesList(
     }
 
     return (
-        <div className="flex flex-col justify-center items-center mt-6 lg:grid gap-6 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5">
-            {moviesList.map((movie: Movie) => (
-                <Card key={movie.imdbId} item={movie} />
-            ))}
-        </div>
+        <>
+            <div className="flex flex-col justify-center items-center mt-6 lg:grid gap-6 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-5">
+                {moviesList.map((movie: Movie) => (
+                    <Card key={movie.imdbId} item={movie} />
+                ))}
+            </div>
+            <div className="mt-9 flex w-full justify-center">
+                <Pagination totalPages={totalPages} />
+            </div>
+        </>
     );
 }
