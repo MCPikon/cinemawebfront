@@ -1,7 +1,7 @@
 
 # CinemaWebFront
 
-[![Next.js](https://img.shields.io/badge/Next.js-14.2.1-gray?style=for-the-badge&logo=nextdotjs&labelColor=black)](https://astro.build/) &nbsp;
+[![Next.js](https://img.shields.io/badge/Next.js-14.2.3-gray?style=for-the-badge&logo=nextdotjs&labelColor=black)](https://astro.build/) &nbsp;
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4.3%2B-dodgerblue?style=for-the-badge&logo=tailwindcss&logoColor=white&labelColor=101010)](https://tailwindcss.com/) &nbsp;
 ![React](https://img.shields.io/badge/React-18.2.0%2B-steelblue?style=for-the-badge&logo=react&logoColor=white&labelColor=101010) &nbsp;
 
@@ -55,6 +55,11 @@ pnpm run dev
   * @heroicons/react
   * next-view-transitions
   * react-player
+  * use-debounce
+  * react-tag-input-component
+  * react-hot-toast
+  * zod
+  * clsx
 
 ## 📄 Licencia
 
